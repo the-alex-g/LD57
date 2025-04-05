@@ -44,6 +44,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_w8tcp")
+min_value = 0.05
 max_value = 5.0
 value = 5.0
 fill_mode = 3
@@ -64,6 +65,8 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_fjv1a")
+min_value = 1.0
+value = 1.0
 fill_mode = 3
 show_percentage = false
 

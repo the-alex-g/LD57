@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bn32axoxamh3g"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bn32axoxamh3g"]
+
+[ext_resource type="FontFile" uid="uid://5byvwttedu82" path="res://hud/font/ElMessiri-Regular.ttf" id="1_wdedr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o504t"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)
@@ -13,4 +15,5 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [resource]
+default_font = ExtResource("1_wdedr")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_o504t")
