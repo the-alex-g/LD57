@@ -64,7 +64,8 @@ func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
 	query.collide_with_bodies = false
 	var result = space_state.intersect_ray(query)
 	if result:
-		print("hit something")
+		if result.collider is TentacleSegment:
+			result.collider.sever()
 	
 	if direction == Vector2.ZERO:
 		direction = (pos - global_position).normalized()
