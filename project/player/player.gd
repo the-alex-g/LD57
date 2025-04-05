@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var min_friction := 0.05
@@ -71,6 +72,10 @@ func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
 		direction = (pos - global_position).normalized()
 	global_position = pos
 	inertia += direction * jump_accel
+
+
+func damage() -> void:
+	print("ouch!")
 
 
 func _draw() -> void:

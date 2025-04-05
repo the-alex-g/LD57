@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var damage_cooldown_time := 0.5
+
+var _can_hurt_player := true
+
 
 func build_tentacle(length: int, last_segment = null) -> void:
 	if length > 0:
@@ -19,6 +23,7 @@ func _add_segment_to(previous_segment: TentacleSegment, is_tip: bool) -> Tentacl
 		add_child(new_segment)
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
+	new_segment.hit_player.connect(_on_segment_hit_player)
 	
 	return new_segment
 
@@ -30,3 +35,11 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 	else:
 		severed_area.queue_free()
 		new_tip.tip = true
+
+
+func _on_segment_hit_player(player: Player) -> void:
+	if _can_hurt_player:
+		player.damage()
+		_can_hurt_player = false
+		await get_tree().create_timer(damage_cooldown_time).timeout
+		_can_hurt_player = true

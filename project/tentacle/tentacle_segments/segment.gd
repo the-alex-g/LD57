@@ -2,6 +2,7 @@ class_name TentacleSegment
 extends Area2D
 
 signal severed(new_tip)
+signal hit_player(player)
 
 var tip := false : set = set_tip
 
@@ -27,3 +28,8 @@ func set_tip(value: bool) -> void:
 	else:
 		await tree_entered
 		set_tip(value)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		hit_player.emit(body)
