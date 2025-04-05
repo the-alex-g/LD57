@@ -153,6 +153,7 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, 8, Color.RED)
 
 
-func _on_world_game_over(_win: bool) -> void:
-	_game_over = true
-	_jump_cursor.hide()
+func _on_world_game_over(win: bool) -> void:
+	if not win:
+		_game_over = true
+		_jump_cursor.hide()

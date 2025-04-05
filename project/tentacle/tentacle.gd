@@ -9,6 +9,7 @@ var _can_hurt_player := true
 var length := 0
 var _last_segment : TentacleSegment
 var _reversed := randi() % 2 == 0
+var _growing := true
 
 @onready var _grow_timer := $GrowTimer
 
@@ -16,12 +17,15 @@ var _reversed := randi() % 2 == 0
 func build_tentacle(new_length: int) -> void:
 	length = new_length
 	for x in length:
-		await _add_segment()
+		if _growing:
+			await _add_segment()
 	_start_grow_timer()
+	_growing = false
 
 
 func _add_segment() -> TentacleSegment:
 	var new_segment := preload("res://tentacle/tentacle_segments/segment.tscn").instantiate()
+	var target := -12
 	if _last_segment:
 		if _last_segment.type != TentacleSegment.SegmentType.BASE:
 			_last_segment.type = TentacleSegment.SegmentType.BODY
@@ -29,6 +33,7 @@ func _add_segment() -> TentacleSegment:
 	else:
 		add_child(new_segment)
 		new_segment.type = TentacleSegment.SegmentType.BASE
+		target = -4
 	new_segment.reversed = _reversed
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
@@ -36,7 +41,7 @@ func _add_segment() -> TentacleSegment:
 	new_segment.drop_bubbles.connect(_on_segment_drop_bubbles)
 	
 	await create_tween()\
-		.tween_property(new_segment, "position", Vector2(0, -12), 0.25)\
+		.tween_property(new_segment, "position", Vector2(0, target), 0.25)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.finished
 	# segment might be cut off already
@@ -59,7 +64,7 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 	length -= severed_length
 	cut_back.emit(severed_length)
 	
-	if new_tip == self:
+	if length <= 2:
 		# tentacle has been severed at root
 		queue_free()
 	else:
@@ -86,8 +91,9 @@ func _on_grow_timer_timeout() -> void:
 
 
 func game_over(win: bool) -> void:
-	_grow_timer.stop()
+	_growing = false
 	if win:
+		_grow_timer.stop()
 		var first_segment : TentacleSegment = get_child(1)
 		first_segment.propagate_drop_bubbles()
 		first_segment.queue_free()
