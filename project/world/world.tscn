@@ -43,10 +43,9 @@ texture = ExtResource("7_sc4t8")
 centered = false
 
 [node name="Boundary" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
-polygon = PackedVector2Array(37, -3, 88, 518, 141, 570, 224, 592, 268, 617, 313, 633, 410, 472, 413, -11, 23, -10, 19, -25, 447, -32, 443, 660, 66, 635, 18, 0)
+polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 633, 408, 474, 413, -11, 23, -10, 19, -25, 447, -32, 443, 660, 66, 635, 18, 0)
 
 [node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
 

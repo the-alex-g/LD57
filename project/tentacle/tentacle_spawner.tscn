@@ -4,7 +4,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_qdpsw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 44, 42, 0, 0, 0, 0, 81, 406, 0, 0, 0, 0, 92, 505, 0, 0, 0, 0, 131, 560, 0, 0, 0, 0, 172, 584, 0, 0, 0, 0, 232, 598, 0, 0, 0, 0, 285, 631, 0, 0, 0, 0, 324, 623, 0, 0, 0, 0, 360, 584, 0, 0, 0, 0, 388, 519)
+"points": PackedVector2Array(0, 0, 0, 0, 49, 43, 0, 0, 0, 0, 85, 405, 0, 0, 0, 0, 99, 502, 0, 0, 0, 0, 135, 555, 0, 0, 0, 0, 174, 580, 0, 0, 0, 0, 229, 591, 0, 0, 0, 0, 287, 626, 0, 0, 0, 0, 311, 624, 0, 0, 0, 0, 343, 582, 0, 0, 0, 0, 376, 511)
 }
 point_count = 10
 
@@ -15,12 +15,11 @@ script = ExtResource("1_8jr25")
 curve = SubResource("Curve2D_qdpsw")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(44, 42)
-rotation = 1.4695
+position = Vector2(49, 43)
+rotation = 1.47167
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+one_shot = true
 
 [node name="TentacleContainer" type="Node2D" parent="."]
 

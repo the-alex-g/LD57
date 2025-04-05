@@ -5,10 +5,10 @@ signal update_health(new_value: int)
 signal died
 
 @export_group("Depth Variables")
-@export var min_friction := 0.05
-@export var max_friction := 1.0
-@export var min_accel := 100.0
-@export var max_accel := 200.0
+@export var min_friction := 0.1
+@export var max_friction := 2.0
+@export var min_accel := 150.0
+@export var max_accel := 300.0
 @export var min_heal_time := 1.0
 @export var max_heal_time := 100.0
 @export var min_corruption_reduction := 1.0
@@ -16,7 +16,7 @@ signal died
 @export_group("Jumping")
 @export var jump_radius := 50.0
 @export var jump_accel := 50.0
-@export var jump_cooldown := 1.0
+@export var jump_cooldown := 0.75
 
 var _heal_clock := 0.0
 var _can_jump := true

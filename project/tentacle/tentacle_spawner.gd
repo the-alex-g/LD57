@@ -11,6 +11,14 @@ var _game_over := false
 @onready var _spawn_timer := $SpawnTimer
 
 
+func _ready() -> void:
+	_start_spawn_timer()
+
+
+func _start_spawn_timer() -> void:
+	_spawn_timer.start(3.0 + randf() * 2)
+
+
 func _process(delta: float) -> void:
 	if _game_over:
 		return
@@ -18,11 +26,12 @@ func _process(delta: float) -> void:
 	var corruption := 0.0
 	for tentacle in _tentacle_container.get_children():
 		corruption += tentacle.length
-	increase_corruption.emit(corruption * delta)
+	increase_corruption.emit(corruption * delta * 0.75)
 
 
 func _on_spawn_timer_timeout() -> void:
 	_spawn_tentacle()
+	_start_spawn_timer()
 
 
 func _spawn_tentacle() -> void:
