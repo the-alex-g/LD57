@@ -24,10 +24,12 @@ shader_parameter/gradient = SubResource("GradientTexture2D_mmdvd")
 [node name="World" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_fn3g3")
+metadata/_edit_horizontal_guides_ = [-14.0]
 
 [node name="WaterBackground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fn3g3")
-scale = Vector2(2.59429, 5.12)
+position = Vector2(-13, 0)
+scale = Vector2(3.3125, 5.12)
 texture = ExtResource("2_mmdvd")
 centered = false
 
@@ -44,7 +46,7 @@ centered = false
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
-polygon = PackedVector2Array(49, 2, 69, 311, 101, 524, 154, 577, 245, 595, 328, 596, 332, 1, 29, -3, 26, -27, 387, -22, 368, 626, 87, 594, 28, -2)
+polygon = PackedVector2Array(37, -3, 88, 518, 141, 570, 224, 592, 268, 617, 313, 633, 410, 472, 413, -11, 23, -10, 19, -25, 447, -32, 443, 660, 66, 635, 18, 0)
 
 [node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
 

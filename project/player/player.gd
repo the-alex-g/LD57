@@ -34,6 +34,7 @@ var _health := 5 :
 		update_health.emit(_health)
 
 @onready var screen_height := DisplayServer.window_get_size().y
+@onready var _jump_cursor := $Sprite2D
 
 
 func _physics_process(delta: float) -> void:
@@ -45,6 +46,12 @@ func _physics_process(delta: float) -> void:
 	
 		if _can_jump and Input.is_action_just_pressed("jump"):
 			_jump()
+	
+	if _can_jump and not _game_over:
+		_jump_cursor.global_position = _get_jump_position()
+		_jump_cursor.show()
+	else:
+		_jump_cursor.hide()
 	
 	velocity += input_direction * get_accel() * delta
 	velocity -= velocity * get_friction() * delta
@@ -84,26 +91,29 @@ func get_depth() -> float:
 func _jump() -> void:
 	_can_jump = false
 	
-	var mouse_position := get_global_mouse_position()
-	if mouse_position.distance_to(global_position) <= jump_radius:
-		_jump_to(mouse_position)
-	else:
-		var jump_direction = (mouse_position - global_position).normalized()
-		_jump_to(global_position + jump_direction * jump_radius, jump_direction)
+	_jump_to(_get_jump_position())
 	
 	await get_tree().create_timer(jump_cooldown).timeout
 	_can_jump = true
 
 
-func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
+func _jump_to(pos: Vector2) -> void:
 	pos = _check_for_walls(pos)
 	
 	_check_for_tentacles(pos)
 	
-	if direction == Vector2.ZERO:
-		direction = (pos - global_position).normalized()
+	var direction := (pos - global_position).normalized()
 	global_position = pos
 	velocity += direction * jump_accel
+
+
+func _get_jump_position() -> Vector2:
+	var mouse_position := get_global_mouse_position()
+	if mouse_position.distance_to(global_position) <= jump_radius:
+		return mouse_position
+	else:
+		var jump_direction = (mouse_position - global_position).normalized()
+		return global_position + jump_direction * jump_radius
 
 
 func _check_for_walls(target: Vector2) -> Vector2:
@@ -145,3 +155,4 @@ func _draw() -> void:
 
 func _on_world_game_over(_win: bool) -> void:
 	_game_over = true
+	_jump_cursor.hide()

@@ -5,7 +5,7 @@ signal update_points(new_value: float)
 signal game_over(win: bool)
 
 @export var max_corruption := 100.0
-@export var max_score := 1
+@export var max_score := 100
 
 var corruption := 0.0 :
 	set(value):

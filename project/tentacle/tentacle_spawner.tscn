@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd7ryw1loa8vn"]
+[gd_scene load_steps=3 format=3 uid="uid://bd7ryw1loa8vn"]
 
 [ext_resource type="Script" uid="uid://d1sxl47dimnmc" path="res://tentacle/tentacle_spawner.gd" id="1_8jr25"]
-[ext_resource type="Texture2D" uid="uid://cp176lp5sc6au" path="res://world/foreground.png" id="2_hrp6u"]
 
 [sub_resource type="Curve2D" id="Curve2D_qdpsw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 44, 42, 0, 0, 0, 0, 81, 406, 0, 0, 0, 0, 92, 505, 0, 0, 0, 0, 131, 560, 0, 0, 0, 0, 172, 584, 0, 0, 0, 0, 237, 597, 0, 0, 0, 0, 312, 598)
+"points": PackedVector2Array(0, 0, 0, 0, 44, 42, 0, 0, 0, 0, 81, 406, 0, 0, 0, 0, 92, 505, 0, 0, 0, 0, 131, 560, 0, 0, 0, 0, 172, 584, 0, 0, 0, 0, 232, 598, 0, 0, 0, 0, 285, 631, 0, 0, 0, 0, 324, 623, 0, 0, 0, 0, 360, 584, 0, 0, 0, 0, 388, 519)
 }
-point_count = 7
+point_count = 10
 
 [node name="TentacleSpawner" type="Node2D"]
 script = ExtResource("1_8jr25")
-
-[node name="Foreground" type="Sprite2D" parent="."]
-texture = ExtResource("2_hrp6u")
-centered = false
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_qdpsw")
