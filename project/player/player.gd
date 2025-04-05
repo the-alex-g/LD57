@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var max_friction := 1.0
 @export var min_accel := 100.0
 @export var max_accel := 200.0
-@export var jump_radius := 100.0
+@export var jump_radius := 50.0
 @export var jump_accel := 50.0
 
 var inertia := Vector2.ZERO
@@ -58,6 +58,14 @@ func _jump() -> void:
 
 
 func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, pos)
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	var result = space_state.intersect_ray(query)
+	if result:
+		print("hit something")
+	
 	if direction == Vector2.ZERO:
 		direction = (pos - global_position).normalized()
 	global_position = pos
