@@ -4,34 +4,46 @@ extends Node2D
 
 var _can_hurt_player := true
 var length := 0
+var _last_segment : TentacleSegment
+
+@onready var _grow_timer := $GrowTimer
 
 
 func build_tentacle(new_length: int) -> void:
 	length = new_length
-	_create_tentacle_chain(length)
+	for x in length:
+		await _add_segment()
+	_start_grow_timer()
 
 
-func _create_tentacle_chain(remaining_length: int, last_segment = null) -> void:
-	if remaining_length > 0:
-		_create_tentacle_chain(
-			remaining_length - 1,
-			_add_segment_to(last_segment, length == 1)
-		)
-
-
-func _add_segment_to(previous_segment: TentacleSegment, is_tip: bool) -> TentacleSegment:
+func _add_segment() -> TentacleSegment:
 	var new_segment := preload("res://tentacle/tentacle_segments/segment.tscn").instantiate()
-	new_segment.tip = is_tip
-	if previous_segment:
-		previous_segment.add_child(new_segment)
-		new_segment.position.y -= 12
+	if _last_segment:
+		_last_segment.tip = false
+		_last_segment.add_child(new_segment)
 	else:
 		add_child(new_segment)
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
 	new_segment.hit_player.connect(_on_segment_hit_player)
 	
-	return new_segment
+	await create_tween()\
+		.tween_property(new_segment, "position", Vector2(0, -12), 0.25)\
+		.set_trans(Tween.TRANS_QUAD)\
+		.finished
+	# segment might be cut off already
+	if is_instance_valid(new_segment):
+		new_segment.start()
+		_last_segment = new_segment
+		return new_segment
+	else:
+		return null
+
+
+func _start_grow_timer() -> void:
+	_grow_timer.start(
+		lerpf(5.0, 10.0, randf())
+	)
 
 
 func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void:
@@ -41,7 +53,8 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 	else:
 		severed_area.queue_free()
 		length -= severed_area.length()
-		new_tip.tip = true
+		
+		_last_segment = new_tip
 
 
 func _on_segment_hit_player(player: Player) -> void:
@@ -50,3 +63,8 @@ func _on_segment_hit_player(player: Player) -> void:
 		_can_hurt_player = false
 		await get_tree().create_timer(damage_cooldown_time).timeout
 		_can_hurt_player = true
+
+
+func _on_grow_timer_timeout() -> void:
+	_add_segment()
+	_start_grow_timer()

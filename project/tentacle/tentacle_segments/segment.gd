@@ -4,7 +4,7 @@ extends Area2D
 signal severed(new_tip)
 signal hit_player(player)
 
-var tip := false : set = set_tip
+var tip := true : set = set_tip
 
 @onready var _sprite := $AnimatedSprite2D
 @onready var _animation_player := $AnimationPlayer
@@ -12,9 +12,11 @@ var tip := false : set = set_tip
 
 func _ready() -> void:
 	set_tip(tip)
-	
-	_animation_player.speed_scale = lerpf(0.5, 1.0, randf())
-	_animation_player.seek(randf() * 2.0)
+	rotation = 0.0
+
+
+func start() -> void:
+	_animation_player.play("wave", -1, lerpf(0.5, 1.0, randf()), randi() % 2 == 0)
 
 
 func sever() -> void:
