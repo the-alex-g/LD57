@@ -1,10 +1,6 @@
 extends Node2D
 
 
-func _ready() -> void:
-	build_tentacle(8)
-
-
 func build_tentacle(length: int, last_segment = null) -> void:
 	if length > 0:
 		if last_segment:
