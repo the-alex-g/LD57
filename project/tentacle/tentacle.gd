@@ -3,14 +3,20 @@ extends Node2D
 @export var damage_cooldown_time := 0.5
 
 var _can_hurt_player := true
+var length := 0
 
 
-func build_tentacle(length: int, last_segment = null) -> void:
-	if length > 0:
-		if last_segment:
-			build_tentacle(length - 1, _add_segment_to(last_segment, length == 1))
-		else:
-			build_tentacle(length - 1, _add_segment_to(last_segment, length == 1))
+func build_tentacle(new_length: int) -> void:
+	length = new_length
+	_create_tentacle_chain(length)
+
+
+func _create_tentacle_chain(remaining_length: int, last_segment = null) -> void:
+	if remaining_length > 0:
+		_create_tentacle_chain(
+			remaining_length - 1,
+			_add_segment_to(last_segment, length == 1)
+		)
 
 
 func _add_segment_to(previous_segment: TentacleSegment, is_tip: bool) -> TentacleSegment:
@@ -34,6 +40,7 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 		queue_free()
 	else:
 		severed_area.queue_free()
+		length -= severed_area.length()
 		new_tip.tip = true
 
 

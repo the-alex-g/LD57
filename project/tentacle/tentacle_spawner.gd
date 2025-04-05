@@ -1,5 +1,7 @@
 extends Node2D
 
+signal increase_corruption(amount: float)
+
 @onready var _path_follow := $Path2D/PathFollow2D
 @onready var _tentacle_container := $TentacleContainer
 
@@ -14,3 +16,10 @@ func _spawn_tentacle() -> void:
 	_tentacle_container.add_child(tentacle)
 	tentacle.transform = _path_follow.transform
 	tentacle.build_tentacle(6 + randi() % 5)
+
+
+func _process(delta: float) -> void:
+	var corruption := 0.0
+	for tentacle in _tentacle_container.get_children():
+		corruption += tentacle.length
+	increase_corruption.emit(corruption * delta)

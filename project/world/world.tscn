@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://seurifg8ru1w"]
+[gd_scene load_steps=10 format=3 uid="uid://seurifg8ru1w"]
 
+[ext_resource type="Script" uid="uid://bls7hj6hai30g" path="res://world/world.gd" id="1_fn3g3"]
 [ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/water_backdrop.gdshader" id="1_h5o24"]
 [ext_resource type="PackedScene" uid="uid://c8y5djf4j8k31" path="res://player/player.tscn" id="1_tcf2h"]
 [ext_resource type="Texture2D" uid="uid://dkm7gmxvhlpkh" path="res://icon.svg" id="2_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bd7ryw1loa8vn" path="res://tentacle/tentacle_spawner.tscn" id="4_h5o24"]
+[ext_resource type="PackedScene" uid="uid://dyf8738b3iwtk" path="res://world/hud.tscn" id="5_mmdvd"]
 
 [sub_resource type="Gradient" id="Gradient_h5o24"]
 offsets = PackedFloat32Array(0, 0.180328, 1)
@@ -20,6 +22,7 @@ shader_parameter/gradient = SubResource("GradientTexture2D_mmdvd")
 
 [node name="World" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_fn3g3")
 
 [node name="WaterBackground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fn3g3")
@@ -31,3 +34,9 @@ centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_tcf2h")]
 position = Vector2(130, 249)
+
+[node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
+
+[connection signal="update_corruption" from="." to="HUD" method="_on_world_update_corruption"]
+[connection signal="increase_corruption" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_corruption"]
+[connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]

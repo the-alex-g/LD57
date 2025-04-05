@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyf8738b3iwtk"]
+
+[ext_resource type="Script" uid="uid://bpxets0yjawm8" path="res://world/hud.gd" id="1_oerii"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_oerii")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 28.0
+offset_bottom = -24.0
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 10.0
+step = 1.0
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="CorruptionBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false

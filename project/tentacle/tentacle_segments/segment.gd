@@ -33,3 +33,10 @@ func set_tip(value: bool) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		hit_player.emit(body)
+
+
+func length() -> int:
+	if get_child_count() == 4:
+		return 1 + get_child(3).length()
+	else:
+		return 1
