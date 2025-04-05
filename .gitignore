@@ -1,4 +1,4 @@
-project/tentacle.gdshader*
+build/
 # Godot 4+ specific ignores
 .godot/
 /android/
