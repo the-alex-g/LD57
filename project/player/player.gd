@@ -97,19 +97,27 @@ func _jump() -> void:
 
 
 func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, pos)
-	query.collide_with_areas = true
-	query.collide_with_bodies = false
-	var result = space_state.intersect_ray(query)
-	if result:
-		if result.collider is TentacleSegment:
-			result.collider.sever()
+	_check_for_tentacles(pos)
 	
 	if direction == Vector2.ZERO:
 		direction = (pos - global_position).normalized()
 	global_position = pos
 	inertia += direction * jump_accel
+
+
+func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target)
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.exclude = to_ignore
+	
+	var result = space_state.intersect_ray(query)
+	if result and result.collider is TentacleSegment:
+		result.collider.sever()
+		
+		to_ignore.append(result.collider.get_rid())
+		_check_for_tentacles(target, to_ignore)
 
 
 func damage() -> void:

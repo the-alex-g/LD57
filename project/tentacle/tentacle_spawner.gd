@@ -38,6 +38,8 @@ func _on_tentacle_cut_back(amount: int) -> void:
 	increase_points.emit(amount)
 
 
-func _on_world_game_over(_win: bool) -> void:
+func _on_world_game_over(win: bool) -> void:
 	_game_over = true
 	_spawn_timer.stop()
+	for tentacle in _tentacle_container.get_children():
+		tentacle.game_over(win)

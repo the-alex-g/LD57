@@ -73,3 +73,7 @@ func _on_segment_hit_player(player: Player) -> void:
 func _on_grow_timer_timeout() -> void:
 	_add_segment()
 	_start_grow_timer()
+
+
+func game_over(_win: bool) -> void:
+	_grow_timer.stop()
