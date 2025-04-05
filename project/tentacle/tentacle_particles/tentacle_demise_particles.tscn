@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://djj56k8l0av0r"]
+
+[ext_resource type="Texture2D" uid="uid://dthelrrhgbuv" path="res://tentacle/tentacle_particles/bubble.png" id="1_001na"]
+
+[sub_resource type="Gradient" id="Gradient_g5vwg"]
+colors = PackedColorArray(0, 0.04, 0.2, 0.588235, 1, 1, 1, 0.588235)
+
+[node name="TentacleDemiseParticles" type="CPUParticles2D"]
+emitting = false
+amount = 4
+texture = ExtResource("1_001na")
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.25
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(4, 8)
+gravity = Vector2(0, -50)
+color_ramp = SubResource("Gradient_g5vwg")

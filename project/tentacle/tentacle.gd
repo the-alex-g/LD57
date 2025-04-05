@@ -1,6 +1,7 @@
 extends Node2D
 
 signal cut_back(amount: int)
+signal drop_bubbles(bubble_transform: Transform2D)
 
 @export var damage_cooldown_time := 0.5
 
@@ -30,6 +31,7 @@ func _add_segment() -> TentacleSegment:
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
 	new_segment.hit_player.connect(_on_segment_hit_player)
+	new_segment.drop_bubbles.connect(_on_segment_drop_bubbles)
 	
 	await create_tween()\
 		.tween_property(new_segment, "position", Vector2(0, -12), 0.25)\
@@ -72,10 +74,18 @@ func _on_segment_hit_player(player: Player) -> void:
 		_can_hurt_player = true
 
 
+func _on_segment_drop_bubbles(bubble_transform: Transform2D) -> void:
+	drop_bubbles.emit(bubble_transform)
+
+
 func _on_grow_timer_timeout() -> void:
 	_add_segment()
 	_start_grow_timer()
 
 
-func game_over(_win: bool) -> void:
+func game_over(win: bool) -> void:
 	_grow_timer.stop()
+	if win:
+		var first_segment : TentacleSegment = get_child(1)
+		first_segment.propagate_drop_bubbles()
+		first_segment.queue_free()

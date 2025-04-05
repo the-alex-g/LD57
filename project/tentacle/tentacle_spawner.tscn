@@ -29,4 +29,6 @@ autostart = true
 
 [node name="TentacleContainer" type="Node2D" parent="."]
 
+[node name="BubbleContainer" type="Node2D" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,8 +1,9 @@
 class_name TentacleSegment
 extends Area2D
 
-signal severed(new_tip)
-signal hit_player(player)
+signal severed(new_tip: Node2D)
+signal hit_player(player: Player)
+signal drop_bubbles(bubble_transform: Transform2D)
 
 var tip := true : set = set_tip
 var reversed := false : set = set_reversed
@@ -22,6 +23,21 @@ func start() -> void:
 
 func sever() -> void:
 	severed.emit(get_parent())
+	propagate_drop_bubbles()
+
+
+func propagate_drop_bubbles() -> void:
+	drop_bubbles.emit(global_transform)
+	var next_segment := get_next_segment()
+	if next_segment:
+		next_segment.propagate_drop_bubbles()
+
+
+func get_next_segment() -> TentacleSegment:
+	if get_child_count() == 4:
+		return get_child(3)
+	else:
+		return null
 
 
 func set_tip(value: bool) -> void:
@@ -48,7 +64,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func length() -> int:
-	if get_child_count() == 4:
-		return 1 + get_child(3).length()
+	var next_segment := get_next_segment()
+	if next_segment:
+		return 1 + next_segment.length()
 	else:
 		return 1
