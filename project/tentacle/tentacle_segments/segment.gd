@@ -1,11 +1,13 @@
 class_name TentacleSegment
 extends Area2D
 
+enum SegmentType {TIP, BODY, BASE}
+
 signal severed(new_tip: Node2D)
 signal hit_player(player: Player)
 signal drop_bubbles(bubble_transform: Transform2D)
 
-var tip := true : set = set_tip
+var type := SegmentType.TIP : set = set_type
 var reversed := false : set = set_reversed
 
 @onready var _sprite := $AnimatedSprite2D
@@ -13,7 +15,6 @@ var reversed := false : set = set_reversed
 
 
 func _ready() -> void:
-	set_tip(tip)
 	rotation = 0.0
 
 
@@ -40,13 +41,19 @@ func get_next_segment() -> TentacleSegment:
 		return null
 
 
-func set_tip(value: bool) -> void:
-	tip = value
+func set_type(value: SegmentType) -> void:
+	type = value
 	if is_node_ready():
-		_sprite.play("tip" if value else "body")
+		match type:
+			SegmentType.TIP:
+				_sprite.play("tip")
+			SegmentType.BODY:
+				_sprite.play("body")
+			SegmentType.BASE:
+				_sprite.play("base")
 	else:
 		await tree_entered
-		set_tip(value)
+		set_type(value)
 
 
 func set_reversed(value: bool) -> void:

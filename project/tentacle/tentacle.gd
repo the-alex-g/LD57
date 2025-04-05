@@ -23,10 +23,12 @@ func build_tentacle(new_length: int) -> void:
 func _add_segment() -> TentacleSegment:
 	var new_segment := preload("res://tentacle/tentacle_segments/segment.tscn").instantiate()
 	if _last_segment:
-		_last_segment.tip = false
+		if _last_segment.type != TentacleSegment.SegmentType.BASE:
+			_last_segment.type = TentacleSegment.SegmentType.BODY
 		_last_segment.add_child(new_segment)
 	else:
 		add_child(new_segment)
+		new_segment.type = TentacleSegment.SegmentType.BASE
 	new_segment.reversed = _reversed
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
@@ -62,7 +64,7 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 		queue_free()
 	else:
 		severed_area.queue_free()
-		new_tip.tip = true
+		new_tip.type = TentacleSegment.SegmentType.TIP
 		_last_segment = new_tip
 
 

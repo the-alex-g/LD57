@@ -1,21 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3htmd1jkuaxo"]
+[gd_scene load_steps=11 format=3 uid="uid://d3htmd1jkuaxo"]
 
 [ext_resource type="Script" uid="uid://doqgsvn4vnvcs" path="res://tentacle/tentacle_segments/segment.gd" id="1_qj0m3"]
-[ext_resource type="Texture2D" uid="uid://b0tqa7pejra3q" path="res://tentacle/tentacle_segments/tentacle_segments.png" id="2_kn67d"]
+[ext_resource type="Texture2D" uid="uid://dus5yhh4ic4ui" path="res://tentacle/tentacle_segments/tentacle_segments.png" id="2_kn67d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l47f"]
 size = Vector2(8, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjawt"]
-atlas = ExtResource("2_kn67d")
-region = Rect2(0, 0, 8, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5vwg"]
 atlas = ExtResource("2_kn67d")
 region = Rect2(8, 0, 8, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjawt"]
+atlas = ExtResource("2_kn67d")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn67d"]
+atlas = ExtResource("2_kn67d")
+region = Rect2(16, 0, 8, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_54jpt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5vwg")
+}],
+"loop": true,
+"name": &"base",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rjawt")
@@ -26,7 +38,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g5vwg")
+"texture": SubResource("AtlasTexture_kn67d")
 }],
 "loop": true,
 "name": &"tip",
@@ -83,7 +95,7 @@ shape = SubResource("RectangleShape2D_8l47f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_54jpt")
-animation = &"body"
+animation = &"tip"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
