@@ -70,3 +70,7 @@ func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
 		direction = (pos - global_position).normalized()
 	global_position = pos
 	inertia += direction * jump_accel
+
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 8, Color.RED)

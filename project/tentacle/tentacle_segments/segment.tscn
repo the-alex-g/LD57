@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3htmd1jkuaxo"]
+
+[ext_resource type="Script" uid="uid://doqgsvn4vnvcs" path="res://tentacle/tentacle_segments/segment.gd" id="1_qj0m3"]
+[ext_resource type="Texture2D" uid="uid://d2sdtoun5mgt" path="res://tentacle/tentacle_segments/tentacle_segments.png" id="2_kn67d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l47f"]
+size = Vector2(8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjawt"]
+atlas = ExtResource("2_kn67d")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5vwg"]
+atlas = ExtResource("2_kn67d")
+region = Rect2(8, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54jpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjawt")
+}],
+"loop": true,
+"name": &"body",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5vwg")
+}],
+"loop": true,
+"name": &"tip",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_kn67d"]
+resource_name = "wave"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [-0.523599, 0.523599]
+}
+
+[sub_resource type="Animation" id="Animation_rjawt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.491198]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5vwg"]
+_data = {
+&"RESET": SubResource("Animation_rjawt"),
+&"wave": SubResource("Animation_kn67d")
+}
+
+[node name="Segment" type="Area2D"]
+texture_filter = 1
+rotation = -0.491198
+script = ExtResource("1_qj0m3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_8l47f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_54jpt")
+animation = &"body"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g5vwg")
+}
+autoplay = "wave"

@@ -8,5 +8,4 @@
 [node name="Player" parent="." instance=ExtResource("1_tcf2h")]
 
 [node name="Tentacle" parent="." instance=ExtResource("2_4717r")]
-position = Vector2(147, 350)
-rotation = 1.46982
+position = Vector2(378, 282)

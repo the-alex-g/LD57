@@ -1,10 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://8wpab0wddm16"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojlhd"]
-size = Vector2(20, 133)
+[ext_resource type="Script" uid="uid://cxngqpo32dvac" path="res://tentacle/tentacle.gd" id="1_mxb61"]
 
-[node name="Tentacle" type="Area2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -56.5)
-shape = SubResource("RectangleShape2D_ojlhd")
+[node name="Tentacle" type="Node2D"]
+script = ExtResource("1_mxb61")
