@@ -24,6 +24,13 @@ value = 10.0
 fill_mode = 3
 show_percentage = false
 
+[node name="PointsBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
 [node name="CorruptionBar" type="ProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2

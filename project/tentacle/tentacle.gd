@@ -1,5 +1,7 @@
 extends Node2D
 
+signal cut_back(amount: int)
+
 @export var damage_cooldown_time := 0.5
 
 var _can_hurt_player := true
@@ -47,13 +49,16 @@ func _start_grow_timer() -> void:
 
 
 func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void:
+	var severed_length := severed_area.length()
+	length -= severed_length
+	cut_back.emit(severed_length)
+	
 	if new_tip == self:
 		# tentacle has been severed at root
 		queue_free()
 	else:
 		severed_area.queue_free()
-		length -= severed_area.length()
-		
+		new_tip.tip = true
 		_last_segment = new_tip
 
 

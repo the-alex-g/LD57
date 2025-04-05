@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 signal update_health(new_value: int)
 
+@export_group("Depth Variables")
 @export var min_friction := 0.05
 @export var max_friction := 1.0
 @export var min_accel := 100.0
@@ -11,8 +12,10 @@ signal update_health(new_value: int)
 @export var max_heal_time := 10.0
 @export var min_corruption_reduction := 1.0
 @export var max_corruption_reduction := 10.0
+@export_group("Jumping")
 @export var jump_radius := 50.0
 @export var jump_accel := 50.0
+@export var jump_cooldown := 1.0
 
 var inertia := Vector2.ZERO
 var _heal_clock := 0.0
@@ -83,7 +86,7 @@ func _jump() -> void:
 		var jump_direction = (mouse_position - global_position).normalized()
 		_jump_to(global_position + jump_direction * jump_radius, jump_direction)
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(jump_cooldown).timeout
 	_can_jump = true
 
 
