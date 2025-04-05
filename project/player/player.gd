@@ -22,10 +22,10 @@ var inertia := Vector2.ZERO
 var _heal_clock := 0.0
 var _can_jump := true
 var _game_over := false
-var _health := 10 :
+var _health := 5 :
 	set(value):
-		if value > 10:
-			_health = 10
+		if value > 5:
+			_health = 5
 		elif value <= 0:
 			if _health != 0:
 				died.emit()

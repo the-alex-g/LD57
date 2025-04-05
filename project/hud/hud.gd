@@ -7,7 +7,7 @@ extends CanvasLayer
 
 
 func _on_player_update_health(new_value: int) -> void:
-	_healthbar.value = new_value
+	_healthbar.interpolate_value(new_value, 0.5)
 
 
 func _on_world_update_corruption(new_value: float) -> void:
@@ -15,7 +15,7 @@ func _on_world_update_corruption(new_value: float) -> void:
 
 
 func _on_world_update_points(new_value: float) -> void:
-	_points_bar.value = new_value
+	_points_bar.interpolate_value(new_value, 0.5)
 
 
 func _on_world_game_over(win: bool) -> void:

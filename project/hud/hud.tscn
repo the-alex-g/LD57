@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyf8738b3iwtk"]
+[gd_scene load_steps=4 format=3 uid="uid://dyf8738b3iwtk"]
 
-[ext_resource type="Script" uid="uid://bpxets0yjawm8" path="res://world/hud.gd" id="1_oerii"]
+[ext_resource type="Script" uid="uid://bpxets0yjawm8" path="res://hud/hud.gd" id="1_oerii"]
+[ext_resource type="Script" uid="uid://doy0oqlax6vwf" path="res://hud/interpolated_progress_bar.gd" id="2_318vg"]
 [ext_resource type="PackedScene" uid="uid://dcg00ojqqdh43" path="res://screens/end_of_game_scene.tscn" id="2_ve3w8"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -19,11 +20,11 @@ grow_vertical = 2
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
-max_value = 10.0
-step = 1.0
-value = 10.0
+max_value = 5.0
+value = 5.0
 fill_mode = 3
 show_percentage = false
+script = ExtResource("2_318vg")
 
 [node name="PointsBar" type="ProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
@@ -31,6 +32,7 @@ layout_mode = 2
 size_flags_vertical = 1
 fill_mode = 3
 show_percentage = false
+script = ExtResource("2_318vg")
 
 [node name="CorruptionBar" type="ProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
