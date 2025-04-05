@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyf8738b3iwtk"]
+[gd_scene load_steps=3 format=3 uid="uid://dyf8738b3iwtk"]
 
 [ext_resource type="Script" uid="uid://bpxets0yjawm8" path="res://world/hud.gd" id="1_oerii"]
+[ext_resource type="PackedScene" uid="uid://dcg00ojqqdh43" path="res://screens/end_of_game_scene.tscn" id="2_ve3w8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_oerii")
@@ -37,3 +38,5 @@ layout_mode = 2
 size_flags_vertical = 1
 fill_mode = 3
 show_percentage = false
+
+[node name="EndOfGameScreen" parent="." instance=ExtResource("2_ve3w8")]

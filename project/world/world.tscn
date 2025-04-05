@@ -37,8 +37,12 @@ position = Vector2(130, 249)
 
 [node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
 
+[connection signal="game_over" from="." to="TentacleSpawner" method="_on_world_game_over"]
+[connection signal="game_over" from="." to="Player" method="_on_world_game_over"]
+[connection signal="game_over" from="." to="HUD" method="_on_world_game_over"]
 [connection signal="update_corruption" from="." to="HUD" method="_on_world_update_corruption"]
 [connection signal="update_points" from="." to="HUD" method="_on_world_update_points"]
 [connection signal="increase_corruption" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_corruption"]
 [connection signal="increase_points" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_points"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]

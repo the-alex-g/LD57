@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal update_health(new_value: int)
+signal died
 
 @export_group("Depth Variables")
 @export var min_friction := 0.05
@@ -9,7 +10,7 @@ signal update_health(new_value: int)
 @export var min_accel := 100.0
 @export var max_accel := 200.0
 @export var min_heal_time := 1.0
-@export var max_heal_time := 10.0
+@export var max_heal_time := 100.0
 @export var min_corruption_reduction := 1.0
 @export var max_corruption_reduction := 10.0
 @export_group("Jumping")
@@ -20,11 +21,14 @@ signal update_health(new_value: int)
 var inertia := Vector2.ZERO
 var _heal_clock := 0.0
 var _can_jump := true
+var _game_over := false
 var _health := 10 :
 	set(value):
 		if value > 10:
 			_health = 10
-		elif value < 0:
+		elif value <= 0:
+			if _health != 0:
+				died.emit()
 			_health = 0
 		else:
 			_health = value
@@ -34,17 +38,19 @@ var _health := 10 :
 
 
 func _physics_process(delta: float) -> void:
-	var input_direction := Input.get_vector(
-		"left", "right", "up", "down"
-	).normalized()
+	var input_direction := Vector2.ZERO
+	if not _game_over:
+		input_direction = Input.get_vector(
+			"left", "right", "up", "down"
+		).normalized()
+	
+		if _can_jump and Input.is_action_just_pressed("jump"):
+			_jump()
 	
 	inertia += input_direction * get_accel() * delta
 	inertia -= inertia * get_friction() * delta
 	
 	move_and_collide(inertia * delta)
-	
-	if _can_jump and Input.is_action_just_pressed("jump"):
-		_jump()
 	
 	_heal_clock += delta
 	if _heal_clock >= get_heal_time():
@@ -113,3 +119,7 @@ func damage() -> void:
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, 8, Color.RED)
+
+
+func _on_world_game_over(_win: bool) -> void:
+	_game_over = true
