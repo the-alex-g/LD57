@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d3htmd1jkuaxo"]
 
 [ext_resource type="Script" uid="uid://doqgsvn4vnvcs" path="res://tentacle/tentacle_segments/segment.gd" id="1_qj0m3"]
-[ext_resource type="Texture2D" uid="uid://d2sdtoun5mgt" path="res://tentacle/tentacle_segments/tentacle_segments.png" id="2_kn67d"]
+[ext_resource type="Texture2D" uid="uid://b0tqa7pejra3q" path="res://tentacle/tentacle_segments/tentacle_segments.png" id="2_kn67d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l47f"]
 size = Vector2(8, 16)

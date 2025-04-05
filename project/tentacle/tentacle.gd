@@ -7,6 +7,7 @@ signal cut_back(amount: int)
 var _can_hurt_player := true
 var length := 0
 var _last_segment : TentacleSegment
+var _reversed := randi() % 2 == 0
 
 @onready var _grow_timer := $GrowTimer
 
@@ -25,6 +26,7 @@ func _add_segment() -> TentacleSegment:
 		_last_segment.add_child(new_segment)
 	else:
 		add_child(new_segment)
+	new_segment.reversed = _reversed
 	
 	new_segment.severed.connect(_on_segment_severed.bind(new_segment))
 	new_segment.hit_player.connect(_on_segment_hit_player)

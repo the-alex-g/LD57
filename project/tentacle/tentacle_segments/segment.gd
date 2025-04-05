@@ -5,6 +5,7 @@ signal severed(new_tip)
 signal hit_player(player)
 
 var tip := true : set = set_tip
+var reversed := false : set = set_reversed
 
 @onready var _sprite := $AnimatedSprite2D
 @onready var _animation_player := $AnimationPlayer
@@ -30,6 +31,15 @@ func set_tip(value: bool) -> void:
 	else:
 		await tree_entered
 		set_tip(value)
+
+
+func set_reversed(value: bool) -> void:
+	reversed = value
+	if is_node_ready():
+		_sprite.flip_h = value
+	else:
+		await tree_entered
+		set_reversed(value)
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -1,22 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd7ryw1loa8vn"]
+[gd_scene load_steps=4 format=3 uid="uid://bd7ryw1loa8vn"]
 
 [ext_resource type="Script" uid="uid://d1sxl47dimnmc" path="res://tentacle/tentacle_spawner.gd" id="1_8jr25"]
+[ext_resource type="Texture2D" uid="uid://cp176lp5sc6au" path="res://world/foreground.png" id="2_hrp6u"]
 
 [sub_resource type="Curve2D" id="Curve2D_qdpsw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 39, 53, 0, 0, 0, 0, 66, 406, 0, 0, 0, 0, 103, 535, 0, 0, 0, 0, 166, 584, 0, 0, 0, 0, 292, 588)
+"points": PackedVector2Array(0, 0, 0, 0, 44, 42, 0, 0, 0, 0, 81, 406, 0, 0, 0, 0, 92, 505, 0, 0, 0, 0, 131, 560, 0, 0, 0, 0, 172, 584, 0, 0, 0, 0, 237, 597, 0, 0, 0, 0, 312, 598)
 }
-point_count = 5
+point_count = 7
 
 [node name="TentacleSpawner" type="Node2D"]
 script = ExtResource("1_8jr25")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+texture = ExtResource("2_hrp6u")
+centered = false
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_qdpsw")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(39, 53)
-rotation = 1.49446
+position = Vector2(44, 42)
+rotation = 1.4695
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0

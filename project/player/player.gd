@@ -18,7 +18,6 @@ signal died
 @export var jump_accel := 50.0
 @export var jump_cooldown := 1.0
 
-var inertia := Vector2.ZERO
 var _heal_clock := 0.0
 var _can_jump := true
 var _game_over := false
@@ -47,10 +46,10 @@ func _physics_process(delta: float) -> void:
 		if _can_jump and Input.is_action_just_pressed("jump"):
 			_jump()
 	
-	inertia += input_direction * get_accel() * delta
-	inertia -= inertia * get_friction() * delta
+	velocity += input_direction * get_accel() * delta
+	velocity -= velocity * get_friction() * delta
 	
-	move_and_collide(inertia * delta)
+	move_and_slide()
 	
 	_heal_clock += delta
 	if _heal_clock >= get_heal_time():
@@ -97,12 +96,27 @@ func _jump() -> void:
 
 
 func _jump_to(pos: Vector2, direction := Vector2.ZERO) -> void:
+	pos = _check_for_walls(pos)
+	
 	_check_for_tentacles(pos)
 	
 	if direction == Vector2.ZERO:
 		direction = (pos - global_position).normalized()
 	global_position = pos
-	inertia += direction * jump_accel
+	velocity += direction * jump_accel
+
+
+func _check_for_walls(target: Vector2) -> Vector2:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target)
+	query.collide_with_bodies = true
+	query.exclude = [get_rid()]
+	
+	var result := space_state.intersect_ray(query)
+	if result:
+		return result.position
+	else:
+		return target
 
 
 func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
@@ -112,7 +126,7 @@ func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
 	query.collide_with_bodies = false
 	query.exclude = to_ignore
 	
-	var result = space_state.intersect_ray(query)
+	var result := space_state.intersect_ray(query)
 	if result and result.collider is TentacleSegment:
 		result.collider.sever()
 		

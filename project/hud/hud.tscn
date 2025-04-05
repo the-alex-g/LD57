@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyf8738b3iwtk"]
+[gd_scene load_steps=8 format=3 uid="uid://dyf8738b3iwtk"]
 
 [ext_resource type="Script" uid="uid://bpxets0yjawm8" path="res://hud/hud.gd" id="1_oerii"]
 [ext_resource type="Script" uid="uid://doy0oqlax6vwf" path="res://hud/interpolated_progress_bar.gd" id="2_318vg"]
 [ext_resource type="PackedScene" uid="uid://dcg00ojqqdh43" path="res://screens/end_of_game_scene.tscn" id="2_ve3w8"]
+[ext_resource type="Theme" uid="uid://bn32axoxamh3g" path="res://hud/theme.tres" id="2_w8tcp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8tcp"]
+bg_color = Color(0.756863, 0.0666667, 0.992157, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svhta"]
+bg_color = Color(0, 0.901961, 0.0980392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjv1a"]
+bg_color = Color(0, 0.0392157, 0.196078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_oerii")
@@ -15,11 +37,13 @@ offset_top = 24.0
 offset_right = 28.0
 offset_bottom = -24.0
 grow_vertical = 2
+theme = ExtResource("2_w8tcp")
 
 [node name="HealthBar" type="ProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_w8tcp")
 max_value = 5.0
 value = 5.0
 fill_mode = 3
@@ -30,6 +54,7 @@ script = ExtResource("2_318vg")
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_svhta")
 fill_mode = 3
 show_percentage = false
 script = ExtResource("2_318vg")
@@ -38,6 +63,7 @@ script = ExtResource("2_318vg")
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_fjv1a")
 fill_mode = 3
 show_percentage = false
 
