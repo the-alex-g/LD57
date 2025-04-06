@@ -150,9 +150,10 @@ func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
 
 
 func damage() -> void:
+	if not _game_over:
+		_hit_sound.play()
 	_health -= 1
 	_heal_clock = 0.0
-	_hit_sound.play()
 
 
 func _on_world_game_over(win: bool) -> void:

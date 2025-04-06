@@ -1,16 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://belbeixyl64ju"]
 
-[ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/background/water_backdrop.gdshader" id="1_rlrr0"]
+[ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/background/water_backdrop.gdshader" id="1_sthcc"]
 
-[sub_resource type="Gradient" id="Gradient_h5o24"]
-offsets = PackedFloat32Array(0, 0.180328, 1)
-colors = PackedColorArray(0, 0.588235, 0.784314, 1, 0, 0.196078, 0.392157, 1, 0, 0.0392157, 0.196078, 1)
+[sub_resource type="Gradient" id="Gradient_sthcc"]
+offsets = PackedFloat32Array(0, 0.237705, 1)
+colors = PackedColorArray(0, 0.729412, 0.85098, 1, 0.0392157, 0.196078, 0.392157, 1, 0, 0.0392157, 0.196078, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmdvd"]
-gradient = SubResource("Gradient_h5o24")
-fill_from = Vector2(1, 0.0215054)
-fill_to = Vector2(1, 1)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u50bv"]
+gradient = SubResource("Gradient_sthcc")
 
 [resource]
-shader = ExtResource("1_rlrr0")
-shader_parameter/gradient = SubResource("GradientTexture2D_mmdvd")
+shader = ExtResource("1_sthcc")
+shader_parameter/gradient = SubResource("GradientTexture1D_u50bv")

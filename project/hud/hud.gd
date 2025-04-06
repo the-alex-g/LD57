@@ -22,7 +22,9 @@ func _on_world_update_points(new_value: float) -> void:
 
 func _on_world_game_over(win: bool) -> void:
 	_end_of_game_screen.display(
-		"You win!" if win else "You lose."
+		"You have prevented the tentacles from destroying the world" \
+		if win else \
+		"The tentacles have overwhelmed you"
 	)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1gj2ag082nyy"]
+[gd_scene load_steps=13 format=3 uid="uid://b1gj2ag082nyy"]
 
 [ext_resource type="Theme" uid="uid://bn32axoxamh3g" path="res://hud/theme.tres" id="1_p3cyw"]
 [ext_resource type="Script" uid="uid://bs8xuv5p1kwb5" path="res://screens/main_menu.gd" id="2_wu0qq"]
@@ -41,6 +41,12 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu0qq"]
+font_size = 64
+font_color = Color(0.756863, 0.0666667, 0.992157, 1)
+outline_size = 4
+outline_color = Color(0, 0.0392157, 0.196078, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -139,6 +145,16 @@ theme_override_styles/grabber_area = SubResource("StyleBoxFlat_odldw")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_odldw")
 max_value = 255.0
 step = 5.0
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 63.0
+grow_horizontal = 2
+text = "Abysm"
+label_settings = SubResource("LabelSettings_wu0qq")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="toggled" from="VBoxContainer3/VBoxContainer/Music" to="." method="_on_music_toggled"]
