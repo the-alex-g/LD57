@@ -67,7 +67,7 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 	if length <= 2:
 		# tentacle has been severed at root
 		queue_free()
-	else:
+	elif new_tip is TentacleSegment:
 		severed_area.queue_free()
 		new_tip.type = TentacleSegment.SegmentType.TIP
 		_last_segment = new_tip

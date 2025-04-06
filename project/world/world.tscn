@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://seurifg8ru1w"]
+[gd_scene load_steps=12 format=3 uid="uid://seurifg8ru1w"]
 
 [ext_resource type="Script" uid="uid://bls7hj6hai30g" path="res://world/world.gd" id="1_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://c8y5djf4j8k31" path="res://player/player.tscn" id="1_tcf2h"]
 [ext_resource type="PackedScene" uid="uid://df2q1h6plae8n" path="res://world/background/background.tscn" id="2_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bd7ryw1loa8vn" path="res://tentacle/tentacle_spawner.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://dyf8738b3iwtk" path="res://hud/hud.tscn" id="5_mmdvd"]
+[ext_resource type="Shader" uid="uid://6qnvtx4mvoah" path="res://world/coral.gdshader" id="7_ai45w"]
 [ext_resource type="Texture2D" uid="uid://cp176lp5sc6au" path="res://world/foreground.png" id="7_sc4t8"]
+[ext_resource type="Texture2D" uid="uid://crc56cpsfksh8" path="res://world/coral.png" id="8_4papg"]
+[ext_resource type="Texture2D" uid="uid://cjpq1ekqwpyhq" path="res://world/coral_2.png" id="9_4papg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyhu2"]
+shader = ExtResource("7_ai45w")
+shader_parameter/offset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov2xu"]
+shader = ExtResource("7_ai45w")
+shader_parameter/offset = 1.5
 
 [node name="World" type="Node2D"]
 texture_filter = 1
@@ -24,11 +35,22 @@ texture = ExtResource("7_sc4t8")
 centered = false
 
 [node name="Boundary" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
 polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 633, 408, 474, 413, -11, 23, -10, 19, -25, 447, -32, 443, 660, 66, 635, 18, 0)
 
 [node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
+
+[node name="Coral" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fyhu2")
+position = Vector2(112, 573)
+texture = ExtResource("8_4papg")
+
+[node name="Coral2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ov2xu")
+position = Vector2(228, 628)
+texture = ExtResource("9_4papg")
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_world_game_over"]
