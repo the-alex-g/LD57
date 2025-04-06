@@ -32,6 +32,7 @@ var _health := 5 :
 		else:
 			_health = value
 		update_health.emit(_health)
+var outline_color : Color : set = set_outline_color
 
 @onready var screen_height := DisplayServer.window_get_size().y
 @onready var _jump_cursor := $Cursor
@@ -163,4 +164,5 @@ func _on_world_game_over(win: bool) -> void:
 
 
 func set_outline_color(color: Color) -> void:
+	outline_color = color
 	_body.material.set_shader_parameter("outline_color", color)

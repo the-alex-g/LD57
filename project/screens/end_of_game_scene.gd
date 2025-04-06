@@ -1,6 +1,7 @@
 extends Control
 
 signal return_to_main
+signal restart
 
 @onready var _message_label := $Message
 
@@ -15,7 +16,7 @@ func display(message: String) -> void:
 
 
 func _on_play_again_pressed() -> void:
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	restart.emit()
 
 
 func _on_main_menu_pressed() -> void:

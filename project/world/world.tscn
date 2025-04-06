@@ -40,8 +40,6 @@ visible = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
 polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 633, 408, 474, 413, -11, 23, -10, 19, -25, 447, -32, 443, 660, 66, 635, 18, 0)
 
-[node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
-
 [node name="Coral" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fyhu2")
 position = Vector2(112, 573)
@@ -51,6 +49,8 @@ texture = ExtResource("8_4papg")
 material = SubResource("ShaderMaterial_ov2xu")
 position = Vector2(228, 628)
 texture = ExtResource("9_4papg")
+
+[node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_world_game_over"]
@@ -64,4 +64,5 @@ texture = ExtResource("9_4papg")
 [connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]
 [connection signal="increase_corruption" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_corruption"]
 [connection signal="increase_points" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_points"]
+[connection signal="restart" from="HUD" to="." method="_on_hud_restart"]
 [connection signal="return_to_main" from="HUD" to="." method="_on_hud_return_to_main"]

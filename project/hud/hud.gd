@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal return_to_main
+signal restart
 
 @onready var _healthbar := $HBoxContainer/HealthBar
 @onready var _corruption_bar := $HBoxContainer/CorruptionBar
@@ -30,3 +31,7 @@ func _on_world_game_over(win: bool) -> void:
 
 func _on_end_of_game_screen_return_to_main() -> void:
 	return_to_main.emit()
+
+
+func _on_end_of_game_screen_restart() -> void:
+	restart.emit()
