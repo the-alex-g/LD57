@@ -49,9 +49,11 @@ polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 
 
 [node name="HUD" parent="." instance=ExtResource("5_mmdvd")]
 
+[connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="Player" method="_on_world_game_over"]
 [connection signal="game_over" from="." to="TentacleSpawner" method="_on_world_game_over"]
 [connection signal="game_over" from="." to="HUD" method="_on_world_game_over"]
+[connection signal="update_corruption" from="." to="." method="_on_update_corruption"]
 [connection signal="update_corruption" from="." to="HUD" method="_on_world_update_corruption"]
 [connection signal="update_points" from="." to="HUD" method="_on_world_update_points"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]

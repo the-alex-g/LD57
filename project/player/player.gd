@@ -11,8 +11,8 @@ signal died
 @export var max_accel := 300.0
 @export var min_heal_time := 1.0
 @export var max_heal_time := 100.0
-@export var min_corruption_reduction := 1.0
-@export var max_corruption_reduction := 10.0
+@export var min_corruption_reduction := 3.0
+@export var max_corruption_reduction := 15.0
 @export_group("Jumping")
 @export var jump_radius := 50.0
 @export var jump_accel := 50.0

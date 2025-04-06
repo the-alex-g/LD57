@@ -22,12 +22,14 @@ var points := 0.0 :
 		update_points.emit(points)
 		if points >= max_score:
 			game_over.emit(true)
+var _game_over := false
 
 @onready var _player := $Player
 
 
 func _process(delta: float) -> void:
-	corruption -= _player.get_corruption_reduction() * delta
+	if not _game_over:
+		corruption -= _player.get_corruption_reduction() * delta
 
 
 func _on_tentacle_spawner_increase_corruption(amount: float) -> void:
@@ -40,3 +42,11 @@ func _on_tentacle_spawner_increase_points(amount: float) -> void:
 
 func _on_player_died() -> void:
 	game_over.emit(false)
+
+
+func _on_update_corruption(new_value: float) -> void:
+	Music.update_corruption(new_value / max_corruption)
+
+
+func _on_game_over(_win: bool) -> void:
+	_game_over = true
