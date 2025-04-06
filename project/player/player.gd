@@ -157,3 +157,7 @@ func _on_world_game_over(win: bool) -> void:
 	if not win:
 		_game_over = true
 		_jump_cursor.hide()
+
+
+func set_outline_color(color: Color) -> void:
+	_body.material.set_shader_parameter("outline_color", color)

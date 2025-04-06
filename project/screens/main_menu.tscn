@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1gj2ag082nyy"]
+
+[ext_resource type="Material" uid="uid://belbeixyl64ju" path="res://world/water_backdrop_material.tres" id="1_ocono"]
+[ext_resource type="Theme" uid="uid://bn32axoxamh3g" path="res://hud/theme.tres" id="1_p3cyw"]
+[ext_resource type="Script" uid="uid://bs8xuv5p1kwb5" path="res://screens/main_menu.gd" id="2_wu0qq"]
+[ext_resource type="Shader" uid="uid://dt2j4cg7cj246" path="res://player/outline.gdshader" id="3_5mnfb"]
+[ext_resource type="Texture2D" uid="uid://ci186krus68go" path="res://player/player.png" id="4_wu0qq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td6ux"]
+bg_color = Color(0, 0.0392157, 0.196078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odldw"]
+shader = ExtResource("3_5mnfb")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl0qj"]
+atlas = ExtResource("4_wu0qq")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu0qq"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl0qj"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odldw"]
+bg_color = Color(0, 0, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p3cyw")
+script = ExtResource("2_wu0qq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_ocono")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -57.0
+offset_right = -25.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Play" type="Button" parent="VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Music" type="CheckBox" parent="VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Music"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+
+[node name="DifficultyLabel" type="Label" parent="VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="DifficultySlider" type="HSlider" parent="VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_td6ux")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_td6ux")
+value = 50.0
+
+[node name="PlayerImage" type="TextureRect" parent="VBoxContainer3/VBoxContainer2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_odldw")
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_tl0qj")
+
+[node name="Outline" type="CheckBox" parent="VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+button_pressed = true
+text = "Player Outline"
+
+[node name="OutlineColorSliders" type="VBoxContainer" parent="VBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Red" type="HSlider" parent="VBoxContainer3/VBoxContainer2/OutlineColorSliders"]
+layout_mode = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_wu0qq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_wu0qq")
+max_value = 255.0
+step = 5.0
+
+[node name="Green" type="HSlider" parent="VBoxContainer3/VBoxContainer2/OutlineColorSliders"]
+layout_mode = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_tl0qj")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_tl0qj")
+max_value = 255.0
+step = 5.0
+
+[node name="Blue" type="HSlider" parent="VBoxContainer3/VBoxContainer2/OutlineColorSliders"]
+layout_mode = 2
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_odldw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_odldw")
+max_value = 255.0
+step = 5.0
+
+[connection signal="pressed" from="VBoxContainer3/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="toggled" from="VBoxContainer3/VBoxContainer/Music" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="VBoxContainer3/VBoxContainer2/Outline" to="." method="_on_outline_toggled"]

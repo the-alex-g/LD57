@@ -4,6 +4,7 @@ signal increase_corruption(amount: float)
 signal increase_points(amount: float)
 
 var _game_over := false
+var _corruption_increase_rate := 1.0
 
 @onready var _path_follow := $Path2D/PathFollow2D
 @onready var _tentacle_container := $TentacleContainer
@@ -26,7 +27,7 @@ func _process(delta: float) -> void:
 	var corruption := 0.0
 	for tentacle in _tentacle_container.get_children():
 		corruption += tentacle.length
-	increase_corruption.emit(corruption * delta)
+	increase_corruption.emit(corruption * delta * _corruption_increase_rate)
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -61,3 +62,7 @@ func _on_tentacle_drop_bubbles(bubble_transform: Transform2D) -> void:
 	_bubble_container.add_child(bubbles)
 	bubbles.global_transform = bubble_transform
 	bubbles.emitting = true
+
+
+func set_difficulty_scale(value: float) -> void:
+	_corruption_increase_rate = lerpf(0.5, 2.0, value)

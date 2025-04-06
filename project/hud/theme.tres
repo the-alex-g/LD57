@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bn32axoxamh3g"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bn32axoxamh3g"]
 
 [ext_resource type="FontFile" uid="uid://5byvwttedu82" path="res://hud/font/ElMessiri-Regular.ttf" id="1_wdedr"]
 
@@ -41,6 +41,18 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ftxk"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.0392157, 0.196078, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o504t"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)
 border_width_left = 2
@@ -58,4 +70,5 @@ default_font = ExtResource("1_wdedr")
 Button/styles/hover = SubResource("StyleBoxFlat_wdedr")
 Button/styles/normal = SubResource("StyleBoxFlat_s4pod")
 Button/styles/pressed = SubResource("StyleBoxFlat_6j2fu")
+HSlider/styles/slider = SubResource("StyleBoxFlat_0ftxk")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_o504t")

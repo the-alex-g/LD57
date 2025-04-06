@@ -25,6 +25,7 @@ var points := 0.0 :
 var _game_over := false
 
 @onready var _player := $Player
+@onready var _tentacle_spawner := $TentacleSpawner
 
 
 func _process(delta: float) -> void:
@@ -50,3 +51,11 @@ func _on_update_corruption(new_value: float) -> void:
 
 func _on_game_over(_win: bool) -> void:
 	_game_over = true
+
+
+func set_difficulty_scale(amount: float) -> void:
+	_tentacle_spawner.set_difficulty_scale(amount)
+
+
+func set_player_outline_color(color: Color) -> void:
+	_player.set_outline_color(color)

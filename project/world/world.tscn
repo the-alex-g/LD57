@@ -1,25 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://seurifg8ru1w"]
+[gd_scene load_steps=8 format=3 uid="uid://seurifg8ru1w"]
 
 [ext_resource type="Script" uid="uid://bls7hj6hai30g" path="res://world/world.gd" id="1_fn3g3"]
-[ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/water_backdrop.gdshader" id="1_h5o24"]
 [ext_resource type="PackedScene" uid="uid://c8y5djf4j8k31" path="res://player/player.tscn" id="1_tcf2h"]
 [ext_resource type="Texture2D" uid="uid://dkm7gmxvhlpkh" path="res://icon.svg" id="2_mmdvd"]
+[ext_resource type="Material" uid="uid://belbeixyl64ju" path="res://world/water_backdrop_material.tres" id="2_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://bd7ryw1loa8vn" path="res://tentacle/tentacle_spawner.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://dyf8738b3iwtk" path="res://hud/hud.tscn" id="5_mmdvd"]
 [ext_resource type="Texture2D" uid="uid://cp176lp5sc6au" path="res://world/foreground.png" id="7_sc4t8"]
-
-[sub_resource type="Gradient" id="Gradient_h5o24"]
-offsets = PackedFloat32Array(0, 0.180328, 1)
-colors = PackedColorArray(0, 0.588235, 0.784314, 1, 0, 0.196078, 0.392157, 1, 0, 0.0392157, 0.196078, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmdvd"]
-gradient = SubResource("Gradient_h5o24")
-fill_from = Vector2(1, 0.0215054)
-fill_to = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fn3g3"]
-shader = ExtResource("1_h5o24")
-shader_parameter/gradient = SubResource("GradientTexture2D_mmdvd")
 
 [node name="World" type="Node2D"]
 texture_filter = 1
@@ -27,7 +14,7 @@ script = ExtResource("1_fn3g3")
 metadata/_edit_horizontal_guides_ = [-14.0]
 
 [node name="WaterBackground" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_fn3g3")
+material = ExtResource("2_sc4t8")
 position = Vector2(-13, 0)
 scale = Vector2(3.3125, 5.12)
 texture = ExtResource("2_mmdvd")
