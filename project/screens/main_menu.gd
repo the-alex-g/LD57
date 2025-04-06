@@ -31,7 +31,7 @@ func _on_play_pressed() -> void:
 
 
 func _on_music_toggled(toggled_on: bool) -> void:
-	Music.set_mute(not toggled_on)
+	Music.set_music_mute(not toggled_on)
 
 
 func _set_player_outline_color(value: Color) -> void:
@@ -46,3 +46,14 @@ func _on_outline_toggled(toggled_on: bool) -> void:
 	else:
 		_outline_color_sliders.hide()
 		_player_outline_color.a = 0.0
+
+
+func _on_sfx_toggled(toggled_on: bool) -> void:
+	Music.set_sfx_mute(not toggled_on)
+
+
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

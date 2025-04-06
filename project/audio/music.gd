@@ -2,6 +2,7 @@ extends Node
 
 var _goblin_bus_index := AudioServer.get_bus_index("Goblin")
 var _music_bus_index := AudioServer.get_bus_index("Music")
+var _sfx_bus_index := AudioServer.get_bus_index("SFX")
 
 @onready var _drum_player := $Drum
 @onready var _goblin_player := $Goblin
@@ -21,8 +22,12 @@ func update_corruption(percent_corrupted: float) -> void:
 	AudioServer.set_bus_volume_db(_goblin_bus_index, volume)
 
 
-func set_mute(value: bool) -> void:
+func set_music_mute(value: bool) -> void:
 	AudioServer.set_bus_mute(_music_bus_index, value)
+
+
+func set_sfx_mute(value: bool) -> void:
+	AudioServer.set_bus_mute(_sfx_bus_index, value)
 
 
 func play_fizz() -> void:

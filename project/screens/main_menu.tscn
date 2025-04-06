@@ -87,6 +87,15 @@ layout_mode = 2
 button_pressed = true
 text = "Music"
 
+[node name="SFX" type="CheckBox" parent="VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Sound Effects"
+
+[node name="Fullscreen" type="CheckBox" parent="VBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer3"]
 layout_mode = 2
 
@@ -140,4 +149,6 @@ step = 5.0
 
 [connection signal="pressed" from="VBoxContainer3/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="toggled" from="VBoxContainer3/VBoxContainer/Music" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="VBoxContainer3/VBoxContainer/SFX" to="." method="_on_sfx_toggled"]
+[connection signal="toggled" from="VBoxContainer3/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="VBoxContainer3/VBoxContainer2/Outline" to="." method="_on_outline_toggled"]
