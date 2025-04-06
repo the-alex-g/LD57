@@ -1,7 +1,5 @@
 # Abysm
-_A game for Ludum Dare 57
-
-Theme: "Depths"_
+_A game for Ludum Dare 57. Theme: "Depths"_
 
 Those pesky tentacles are attempting to emerge from the depths and destroy the world again. It's up to you, a weird cephalopod creature, to stop them.
 
@@ -12,3 +10,7 @@ Each tentacle on the screen generates corruption, shown by the blackish bar on t
 Being near the top of the screen increases the rate at which you heal, and being near the bottom of the screen reduces corruption faster.
 
 Play the game [here](https://the-alex-g.itch.io/abysm).
+
+### Third-Party Assets
+
+I'm using the ElMessiri font from [Google Fonts](https://fonts.google.com), licensed under the Open Font License. A copy of the license can be found in the project above.
