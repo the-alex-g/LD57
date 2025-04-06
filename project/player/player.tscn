@@ -1,9 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8y5djf4j8k31"]
+[gd_scene load_steps=14 format=3 uid="uid://c8y5djf4j8k31"]
 
 [ext_resource type="Script" uid="uid://la1hrbsvcrg2" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://d2lntyf004iax" path="res://player/cursor.png" id="2_rkbax"]
+[ext_resource type="Texture2D" uid="uid://ci186krus68go" path="res://player/player.png" id="3_g1dw6"]
+[ext_resource type="Shader" uid="uid://dt2j4cg7cj246" path="res://player/outline.gdshader" id="3_yw30f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqu6x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
+shader = ExtResource("3_yw30f")
+shader_parameter/outline_color = Color(0.756863, 0.0666667, 0.992157, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjkh3"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(0, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(34, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgyib"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(0, 68, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("3_g1dw6")
+region = Rect2(34, 68, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boad6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw30f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjkh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6k8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boad6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgyib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_oul6g")
@@ -11,5 +67,13 @@ script = ExtResource("1_oul6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kqu6x")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Cursor" type="Sprite2D" parent="."]
 texture = ExtResource("2_rkbax")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qjkh3")
+position = Vector2(6, 0)
+sprite_frames = SubResource("SpriteFrames_boad6")
+autoplay = "default"
+frame_progress = 0.237153

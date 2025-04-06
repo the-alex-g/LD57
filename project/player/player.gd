@@ -34,7 +34,8 @@ var _health := 5 :
 		update_health.emit(_health)
 
 @onready var screen_height := DisplayServer.window_get_size().y
-@onready var _jump_cursor := $Sprite2D
+@onready var _jump_cursor := $Cursor
+@onready var _body := $Body
 
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +53,9 @@ func _physics_process(delta: float) -> void:
 		_jump_cursor.show()
 	else:
 		_jump_cursor.hide()
+	
+	if input_direction.x != 0:
+		_body.flip_h = input_direction.x < 0
 	
 	velocity += input_direction * get_accel() * delta
 	velocity -= velocity * get_friction() * delta
@@ -147,10 +151,6 @@ func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
 func damage() -> void:
 	_health -= 1
 	_heal_clock = 0.0
-
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 8, Color.RED)
 
 
 func _on_world_game_over(win: bool) -> void:
