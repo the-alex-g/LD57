@@ -23,6 +23,7 @@ var points := 0.0 :
 		if points >= max_score:
 			game_over.emit(true)
 var _game_over := false
+var main_menu : Control
 
 @onready var _player := $Player
 @onready var _tentacle_spawner := $TentacleSpawner
@@ -59,3 +60,9 @@ func set_difficulty_scale(amount: float) -> void:
 
 func set_player_outline_color(color: Color) -> void:
 	_player.set_outline_color(color)
+
+
+func _on_hud_return_to_main() -> void:
+	get_tree().root.add_child(main_menu)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = main_menu

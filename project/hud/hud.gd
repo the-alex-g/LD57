@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal return_to_main
+
 @onready var _healthbar := $HBoxContainer/HealthBar
 @onready var _corruption_bar := $HBoxContainer/CorruptionBar
 @onready var _points_bar := $HBoxContainer/PointsBar
@@ -22,3 +24,7 @@ func _on_world_game_over(win: bool) -> void:
 	_end_of_game_screen.display(
 		"You win!" if win else "You lose."
 	)
+
+
+func _on_end_of_game_screen_return_to_main() -> void:
+	return_to_main.emit()

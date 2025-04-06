@@ -47,3 +47,4 @@ polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 
 [connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]
 [connection signal="increase_corruption" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_corruption"]
 [connection signal="increase_points" from="TentacleSpawner" to="." method="_on_tentacle_spawner_increase_points"]
+[connection signal="return_to_main" from="HUD" to="." method="_on_hud_return_to_main"]

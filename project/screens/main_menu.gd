@@ -23,9 +23,11 @@ func _on_play_pressed() -> void:
 		func():
 			game.set_difficulty_scale(_difficulty_slider.value / 100.0)
 			game.set_player_outline_color(_player_outline_color)
+			game.main_menu = self
 	)
 	get_tree().root.add_child(game)
-	queue_free()
+	get_tree().current_scene = game
+	get_tree().root.remove_child(self)
 
 
 func _on_music_toggled(toggled_on: bool) -> void:

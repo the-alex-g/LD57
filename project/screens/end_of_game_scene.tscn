@@ -46,4 +46,9 @@ grow_vertical = 2
 layout_mode = 2
 text = "Play Again"
 
+[node name="MainMenu" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Main Menu"
+
 [connection signal="pressed" from="Menu/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Menu/MainMenu" to="." method="_on_main_menu_pressed"]

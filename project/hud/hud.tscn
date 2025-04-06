@@ -71,3 +71,5 @@ fill_mode = 3
 show_percentage = false
 
 [node name="EndOfGameScreen" parent="." instance=ExtResource("2_ve3w8")]
+
+[connection signal="return_to_main" from="EndOfGameScreen" to="." method="_on_end_of_game_screen_return_to_main"]
