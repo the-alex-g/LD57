@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://belbeixyl64ju"]
 
-[ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/water_backdrop.gdshader" id="1_rlrr0"]
+[ext_resource type="Shader" uid="uid://pdqny4puen1e" path="res://world/background/water_backdrop.gdshader" id="1_rlrr0"]
 
 [sub_resource type="Gradient" id="Gradient_h5o24"]
 offsets = PackedFloat32Array(0, 0.180328, 1)

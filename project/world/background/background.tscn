@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://df2q1h6plae8n"]
+
+[ext_resource type="Script" uid="uid://cdvdvbc77eues" path="res://world/background/background.gd" id="1_brovc"]
+[ext_resource type="Material" uid="uid://belbeixyl64ju" path="res://world/background/water_backdrop_material.tres" id="1_s0gfs"]
+[ext_resource type="Texture2D" uid="uid://5l42lqemwnjv" path="res://world/background/fish.png" id="2_hdbcp"]
+
+[sub_resource type="Gradient" id="Gradient_hdbcp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_brovc"]
+gradient = SubResource("Gradient_hdbcp")
+width = 400
+
+[node name="Background" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_brovc")
+
+[node name="Background" type="Sprite2D" parent="."]
+material = ExtResource("1_s0gfs")
+scale = Vector2(1, 648)
+texture = SubResource("GradientTexture1D_brovc")
+centered = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("2_hdbcp")
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 32.0
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 120.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://seurifg8ru1w"]
+[gd_scene load_steps=7 format=3 uid="uid://seurifg8ru1w"]
 
 [ext_resource type="Script" uid="uid://bls7hj6hai30g" path="res://world/world.gd" id="1_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://c8y5djf4j8k31" path="res://player/player.tscn" id="1_tcf2h"]
-[ext_resource type="Texture2D" uid="uid://dkm7gmxvhlpkh" path="res://icon.svg" id="2_mmdvd"]
-[ext_resource type="Material" uid="uid://belbeixyl64ju" path="res://world/water_backdrop_material.tres" id="2_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://df2q1h6plae8n" path="res://world/background/background.tscn" id="2_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bd7ryw1loa8vn" path="res://tentacle/tentacle_spawner.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://dyf8738b3iwtk" path="res://hud/hud.tscn" id="5_mmdvd"]
 [ext_resource type="Texture2D" uid="uid://cp176lp5sc6au" path="res://world/foreground.png" id="7_sc4t8"]
@@ -13,12 +12,7 @@ texture_filter = 1
 script = ExtResource("1_fn3g3")
 metadata/_edit_horizontal_guides_ = [-14.0]
 
-[node name="WaterBackground" type="Sprite2D" parent="."]
-material = ExtResource("2_sc4t8")
-position = Vector2(-13, 0)
-scale = Vector2(3.3125, 5.12)
-texture = ExtResource("2_mmdvd")
-centered = false
+[node name="Background" parent="." instance=ExtResource("2_fn3g3")]
 
 [node name="Player" parent="." instance=ExtResource("1_tcf2h")]
 position = Vector2(130, 249)
@@ -41,6 +35,7 @@ polygon = PackedVector2Array(45, 2, 91, 484, 136, 565, 208, 588, 234, 599, 308, 
 [connection signal="game_over" from="." to="TentacleSpawner" method="_on_world_game_over"]
 [connection signal="game_over" from="." to="HUD" method="_on_world_game_over"]
 [connection signal="update_corruption" from="." to="." method="_on_update_corruption"]
+[connection signal="update_corruption" from="." to="Background" method="_on_world_update_corruption"]
 [connection signal="update_corruption" from="." to="HUD" method="_on_world_update_corruption"]
 [connection signal="update_points" from="." to="HUD" method="_on_world_update_points"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]

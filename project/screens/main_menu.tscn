@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://b1gj2ag082nyy"]
 
-[ext_resource type="Material" uid="uid://belbeixyl64ju" path="res://world/water_backdrop_material.tres" id="1_ocono"]
 [ext_resource type="Theme" uid="uid://bn32axoxamh3g" path="res://hud/theme.tres" id="1_p3cyw"]
 [ext_resource type="Script" uid="uid://bs8xuv5p1kwb5" path="res://screens/main_menu.gd" id="2_wu0qq"]
 [ext_resource type="Shader" uid="uid://dt2j4cg7cj246" path="res://player/outline.gdshader" id="3_5mnfb"]
+[ext_resource type="PackedScene" uid="uid://df2q1h6plae8n" path="res://world/background/background.tscn" id="3_wu0qq"]
 [ext_resource type="Texture2D" uid="uid://ci186krus68go" path="res://player/player.png" id="4_wu0qq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td6ux"]
@@ -52,14 +52,7 @@ grow_vertical = 2
 theme = ExtResource("1_p3cyw")
 script = ExtResource("2_wu0qq")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = ExtResource("1_ocono")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Background" parent="." instance=ExtResource("3_wu0qq")]
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 1
