@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8y5djf4j8k31"]
+[gd_scene load_steps=15 format=3 uid="uid://c8y5djf4j8k31"]
 
 [ext_resource type="Script" uid="uid://la1hrbsvcrg2" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://d2lntyf004iax" path="res://player/cursor.png" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://ci186krus68go" path="res://player/player.png" id="3_g1dw6"]
 [ext_resource type="Shader" uid="uid://dt2j4cg7cj246" path="res://player/outline.gdshader" id="3_yw30f"]
+[ext_resource type="AudioStream" uid="uid://b0fvo2edbha7v" path="res://audio/sfx/hit.wav" id="5_qjkh3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqu6x"]
 
@@ -68,6 +69,7 @@ script = ExtResource("1_oul6g")
 shape = SubResource("CircleShape2D_kqu6x")
 
 [node name="Cursor" type="Sprite2D" parent="."]
+z_index = 10
 texture = ExtResource("2_rkbax")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -77,3 +79,6 @@ position = Vector2(6, 0)
 sprite_frames = SubResource("SpriteFrames_boad6")
 autoplay = "default"
 frame_progress = 0.237153
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qjkh3")

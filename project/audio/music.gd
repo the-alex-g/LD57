@@ -6,6 +6,7 @@ var _music_bus_index := AudioServer.get_bus_index("Music")
 @onready var _drum_player := $Drum
 @onready var _goblin_player := $Goblin
 @onready var _main_player := $Main
+@onready var _fizz_player := $Fizz
 
 
 func _ready() -> void:
@@ -22,3 +23,7 @@ func update_corruption(percent_corrupted: float) -> void:
 
 func set_mute(value: bool) -> void:
 	AudioServer.set_bus_mute(_music_bus_index, value)
+
+
+func play_fizz() -> void:
+	_fizz_player.play()

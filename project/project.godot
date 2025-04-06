@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD57"
-run/main_scene="uid://b1gj2ag082nyy"
+run/main_scene="uid://cdna4jo4ghcod"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ buses/default_bus_layout="uid://dd8tmxyr2veyw"
 
 [autoload]
 
-Music="*res://music/music.tscn"
+Music="*res://audio/music.tscn"
 
 [display]
 

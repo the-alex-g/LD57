@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx4vrfhhbxokd"]
+
+[ext_resource type="Script" uid="uid://6onnstnvn55w" path="res://audio/music.gd" id="1_g6io0"]
+[ext_resource type="AudioStream" uid="uid://csy2asvw6wko2" path="res://audio/music/drum.ogg" id="1_xbpmt"]
+[ext_resource type="AudioStream" uid="uid://bgn2odpg3pm5v" path="res://audio/music/goblin.ogg" id="2_g6io0"]
+[ext_resource type="AudioStream" uid="uid://bgydivtw5xnoc" path="res://audio/music/main.ogg" id="3_sma34"]
+[ext_resource type="AudioStream" uid="uid://c8beddhrftdme" path="res://audio/sfx/fizz.wav" id="5_ytumo"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_g6io0")
+
+[node name="Drum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_xbpmt")
+bus = &"Drum"
+
+[node name="Goblin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_g6io0")
+bus = &"Goblin"
+
+[node name="Main" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sma34")
+bus = &"Main"
+
+[node name="Fizz" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ytumo")
+volume_db = -6.0
+bus = &"SFX"

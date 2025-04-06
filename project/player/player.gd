@@ -36,6 +36,7 @@ var _health := 5 :
 @onready var screen_height := DisplayServer.window_get_size().y
 @onready var _jump_cursor := $Cursor
 @onready var _body := $Body
+@onready var _hit_sound := $HitSound
 
 
 func _physics_process(delta: float) -> void:
@@ -151,6 +152,7 @@ func _check_for_tentacles(target: Vector2, to_ignore := []) -> void:
 func damage() -> void:
 	_health -= 1
 	_heal_clock = 0.0
+	_hit_sound.play()
 
 
 func _on_world_game_over(win: bool) -> void:

@@ -71,6 +71,7 @@ func _on_segment_severed(new_tip: Node2D, severed_area: TentacleSegment) -> void
 		severed_area.queue_free()
 		new_tip.type = TentacleSegment.SegmentType.TIP
 		_last_segment = new_tip
+	Music.play_fizz()
 
 
 func _on_segment_hit_player(player: Player) -> void:
